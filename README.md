@@ -1,69 +1,51 @@
-# 👋 Hi, I'm CyberKoz
+# CyberKoz
 
-🛡️ SOC Analyst in Training | Detection Engineering | Wazuh SIEM | Linux | Blue Team
+**SOC Analyst in Training | Detection Engineering | Wazuh SIEM | Linux | Blue Team**
 
----
+I build hands-on cybersecurity projects in an authorized home lab, with a focus on clear documentation, reproducible validation, and safe operational practices.
 
-# 🎯 Current Goal
+## Current focus
 
-I am building a professional SOC Analyst portfolio through hands-on labs and real-world detection engineering projects.
+- Developing Tier 1 SOC analysis and incident-triage skills
+- Building and validating Wazuh detection rules
+- Investigating Windows event and Linux Auditd telemetry
+- Practicing threat hunting, networking, Linux, and Windows fundamentals
+- Documenting what was tested without fabricating evidence or exposing sensitive data
 
-My objective is to become a Tier 1 SOC Analyst before advancing into Detection Engineering and Penetration Testing.
+## Home SOC lab
 
----
+| Component | Role |
+| --- | --- |
+| Kali Linux | Analyst workstation and security-testing client |
+| Ubuntu | Wazuh manager and Linux server |
+| Windows 10 | Endpoint telemetry and Windows event testing |
+| VMware Workstation | Isolated lab virtualization |
+| Wazuh SIEM | Log collection, correlation, and alerting |
+| Linux Auditd | Process-execution telemetry |
 
-# 🛠️ Current Home Lab
+## Featured projects
 
-• Kali Linux
+| Project | Focus | Status |
+| --- | --- | --- |
+| ShieldX Wazuh Windows Logon Detection | Windows Event ID 4624, Wazuh rule 100100, and threat-hunting workflow | Documentation in progress |
+| ShieldX Hydra Execution Detection | Linux Auditd, Wazuh rule 100101, and MITRE ATT&CK T1110 | Documentation in progress |
+| [ShieldX Passwordless SSH](https://github.com/CyberKoz-Security/ShieldX-Passwordless-SSH) | Safe Ed25519 key-based SSH from Kali Linux to Ubuntu | Documentation published |
 
-• Ubuntu (Wazuh Manager)
+## Skills I am developing
 
-• Windows 10 Endpoint
+- **Monitoring and detection:** Wazuh SIEM, Windows Event Logs, Linux Auditd
+- **Investigation:** alert triage, threat hunting, incident-response fundamentals
+- **Systems:** Linux, Windows, OpenSSH, VMware
+- **Foundations:** networking, access control, detection engineering
+- **Documentation:** reproducible procedures, validation checklists, troubleshooting, and evidence handling
 
-• VMware Workstation
+## Portfolio standards
 
-• Wazuh SIEM
+- Work only in systems I own or am explicitly authorized to test.
+- Never publish passwords, private keys, tokens, real infrastructure identifiers, or personal data.
+- Keep planned work, verified results, and evidence clearly distinguished.
+- Prefer reversible changes, least privilege, peer review, and a documented recovery path.
 
-• Linux Auditd
+## Career direction
 
----
-
-# 📂 Featured Projects
-
-## ✅ Project 01
-
-ShieldX Wazuh Windows Logon Detection
-
-- Custom Windows Logon Detection Rule
-- Wazuh SIEM
-- Threat Hunting
-- Detection Engineering
-
----
-
-## ✅ Project 02
-
-ShieldX Hydra Execution Detection
-
-- Linux Auditd
-- Wazuh Custom Rules
-- MITRE ATT&CK T1110
-- Detection Engineering
-
----
-
-# 📚 Currently Learning
-
-- Linux
-- Networking
-- Windows Internals
-- Wazuh SIEM
-- Detection Engineering
-- Incident Response
-- Threat Hunting
-
----
-
-# 🚀 Long-Term Goal
-
-Become a professional Detection Engineer and SOC Analyst by building practical projects instead of only completing courses.
+My immediate goal is to become a Tier 1 SOC Analyst. I plan to grow from strong monitoring and incident-triage foundations into Detection Engineering and, later, authorized Penetration Testing.
