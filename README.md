@@ -4,6 +4,10 @@
 
 I build hands-on cybersecurity projects in an authorized home lab, with a focus on clear documentation, reproducible validation, and safe operational practices.
 
+## Connect
+
+- [LinkedIn — Kiran Khatri](https://www.linkedin.com/in/kiran-khatri-soc/)
+
 ## Current focus
 
 - Developing Tier 1 SOC analysis and incident-triage skills
