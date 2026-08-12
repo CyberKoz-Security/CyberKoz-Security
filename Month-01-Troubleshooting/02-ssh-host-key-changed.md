@@ -2,7 +2,7 @@
 
 ## Symptom
 
-SSH from Kali to the Windows 10 lab endpoint failed with:
+SSH from the analyst workstation to a Windows lab endpoint failed with:
 
 ```text
 WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
@@ -11,30 +11,30 @@ Host key verification failed.
 
 ## Root Cause
 
-Kali had an older SSH host key stored for the same IP address. The Windows endpoint had been rebuilt or its SSH host key had changed, so the key presented by the current server no longer matched the entry in `~/.ssh/known_hosts`.
+The client had an older SSH host key stored for the same lab endpoint. The target system had been rebuilt or its SSH host key had changed, so the newly presented key no longer matched the entry in `~/.ssh/known_hosts`.
 
 ## Investigation
 
-SSH identified the exact offending line and suggested removing the stale host entry.
+SSH identifies the offending host entry. After verifying that the lab system was intentionally rebuilt or had legitimate key changes, remove only that stale entry:
 
 ```bash
-ssh-keygen -f ~/.ssh/known_hosts -R 192.168.18.76
+ssh-keygen -f ~/.ssh/known_hosts -R <WINDOWS_IP>
 ```
 
 ## Fix
 
-The stale host-key entry was removed. SSH was attempted again, and the new ED25519 fingerprint was reviewed before accepting it.
+Reconnect using placeholders rather than publishing real lab identifiers:
 
 ```bash
-ssh wikf@192.168.18.76
+ssh <WINDOWS_USER>@<WINDOWS_IP>
 ```
 
-After confirming the new fingerprint belonged to the intended lab host, the prompt was accepted with `yes`.
+Review the new fingerprint and accept it only after confirming it belongs to the intended lab endpoint.
 
 ## Verification
 
-SSH reported that the new key had been permanently added to `known_hosts`, and the connection proceeded to authentication.
+SSH reports that the new key was added to `known_hosts`, and the connection proceeds to authentication.
 
 ## Security Lesson
 
-Never blindly ignore a host-key mismatch. In a real environment, the same warning can indicate a man-in-the-middle attack. First verify whether the host was rebuilt, reinstalled, or intentionally had its SSH keys changed. Only then remove the stale entry and trust the new key.
+Never blindly ignore a host-key mismatch. In a real environment, the same warning can indicate a man-in-the-middle attack. Verify the reason for the key change before trusting the replacement key.
