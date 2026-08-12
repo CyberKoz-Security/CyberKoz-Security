@@ -34,6 +34,7 @@ I build hands-on cybersecurity projects in an authorized home lab, with a focus 
 | ShieldX Wazuh Windows Logon Detection | Windows Event ID 4624, Wazuh rule 100100, and threat-hunting workflow | Validated private project |
 | ShieldX Hydra Execution Detection | Linux Auditd, Wazuh rule 100101, and MITRE ATT&CK T1110 | Private; publication preparation required |
 | [ShieldX Passwordless SSH](https://github.com/CyberKoz-Security/ShieldX-Passwordless-SSH) | Safe Ed25519 key-based SSH from Kali Linux to Ubuntu | Public documentation project |
+| [Month 1 Troubleshooting Knowledge Base](Month-01-Troubleshooting/README.md) | Real lab failures, root-cause analysis, fixes, and verification runbooks | Public learning reference |
 
 Private projects are intentionally not linked from this public profile. Their source files and lab evidence remain restricted.
 
