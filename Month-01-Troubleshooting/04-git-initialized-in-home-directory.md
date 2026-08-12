@@ -2,15 +2,13 @@
 
 ## Symptom
 
-`git init` was accidentally run in the Kali home directory instead of inside the intended project folder. Running `git add .` from the home directory risked tracking unrelated personal and system files.
+`git init` was accidentally run in the Linux home directory instead of inside the intended project folder. Running `git add .` from the home directory risked tracking unrelated personal and system files.
 
 ## Root Cause
 
-Git creates repository metadata in the current working directory. Because the command was executed from `~`, the repository root became `/home/shieldx` rather than the portfolio project directory.
+Git creates repository metadata in the current working directory. Because the command was executed from `~`, the repository root became the user's home directory rather than the intended portfolio project directory.
 
 ## Investigation
-
-The current location and repository state were checked with:
 
 ```bash
 pwd
@@ -18,24 +16,19 @@ ls -la ~ | grep .git
 git status
 ```
 
-The intended project directory was:
-
-```text
-/home/shieldx/ShieldX-Portfolio/03-Passwordless-SSH
-```
-
 ## Fix
 
-The project directory was entered explicitly and Git was initialized there:
+Move into the intended project directory first:
 
 ```bash
-cd ~/ShieldX-Portfolio/03-Passwordless-SSH
+cd <PROJECT_DIRECTORY>
+pwd
 git init
 git branch -m main
 git status
 ```
 
-Files were then added and committed from the correct repository root.
+Only then stage and commit the files that belong to that project.
 
 ## Verification
 
@@ -44,8 +37,8 @@ git log --oneline
 git status
 ```
 
-The repository showed the expected project commit and a clean working tree.
+The repository should show the intended project history and a clean working tree after the commit.
 
 ## Lesson Learned
 
-Before running `git init`, always verify the working directory with `pwd`. Treat repository initialization as a scope decision: Git will consider everything beneath that directory part of the repository unless excluded.
+Before running `git init`, always verify the working directory with `pwd`. Repository initialization is a scope decision: Git treats everything beneath that directory as potentially trackable unless excluded.
