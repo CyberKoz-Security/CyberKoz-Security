@@ -2,64 +2,54 @@
 
 ## Symptom
 
-A mount command that previously worked with:
-
-```bash
-sudo mount /dev/sdb2 /mnt/kenzo
-```
-
-later failed with a block-device lookup error.
+A mount command that previously worked with one `/dev/sdX` name later failed because the removable SSD had been assigned a different device name.
 
 ## Investigation
-
-The current block-device layout was checked with:
 
 ```bash
 lsblk -f
 sudo fdisk -l
 ```
 
-The external SSD, previously assigned `/dev/sdb2`, was now assigned `/dev/sdc2`.
+The same external SSD appeared under a different `/dev/sdX` path after reconnecting it.
 
 ## Root Cause
 
-Linux `/dev/sdX` names are assigned dynamically based on device discovery order. Reconnecting removable storage can change a drive from `sdb` to `sdc`, `sdd`, and so on.
+Linux `/dev/sdX` names are assigned dynamically based on device discovery order. Reconnecting removable storage can change a drive from one letter to another.
 
 ## Fix
 
-The current device name was identified before mounting:
+Always identify the current device first:
 
 ```bash
 lsblk -f
 ```
 
-Then the correct partition was mounted:
+Then mount the correct partition:
 
 ```bash
-sudo mount /dev/sdc2 /mnt/kenzo
+sudo mount <CURRENT_NTFS_PARTITION> <MOUNT_POINT>
 ```
 
 ## Verification
 
 ```bash
-mount | grep kenzo
-find /mnt/kenzo -name '*.vmx'
+mount | grep <MOUNT_POINT_NAME>
+find <MOUNT_POINT> -name '*.vmx'
 ```
-
-The expected VM path was visible again.
 
 ## Better Long-Term Practice
 
 Use a stable filesystem identifier such as UUID or LABEL for persistent mounts instead of relying on `/dev/sdX` names.
 
-Example UUID observed in the lab:
+Example placeholder:
 
 ```text
-127258AC725895F7
+UUID=<EXTERNAL_SSD_UUID>
 ```
 
-A future `/etc/fstab` entry can mount the external SSD consistently at `/mnt/kenzo`, but persistent mount configuration should be tested carefully to avoid boot delays when the removable drive is absent.
+Persistent mount configuration should be tested carefully so an absent removable drive does not create unnecessary boot problems.
 
 ## Lesson Learned
 
-Device names describe the current discovery order, not permanent identity. Always verify removable storage with `lsblk -f` before acting on a remembered `/dev/sdX` path.
+Device names describe current discovery order, not permanent identity. Verify removable storage before acting on a remembered `/dev/sdX` path.
