@@ -1,12 +1,14 @@
-# ShieldX SOC Journey — Month 1 Troubleshooting Knowledge Base
+# ShieldX SOC Journey - Month 1 Troubleshooting Knowledge Base
 
 This directory documents real troubleshooting incidents encountered during Month 1 of the ShieldX SOC lab journey. Each note records the symptom, investigation path, root cause, fix, verification, and lesson learned.
 
 > Scope: authorized home lab only. Sensitive values, credentials, private keys, tokens, personal account details, exact lab addresses, device UUIDs, and unnecessary infrastructure identifiers are intentionally excluded or replaced with placeholders.
 
-## Publication Safety
+## Start Here
 
-Read [SECURITY-SANITIZATION.md](SECURITY-SANITIZATION.md) before adding screenshots, commands, logs, or evidence to this public knowledge base.
+- [Category navigation](CATEGORIES.md) - find a guide by technology or problem type.
+- [Security and sanitization rules](SECURITY-SANITIZATION.md) - what must never be published.
+- [Privacy-safe evidence guide](EVIDENCE-GUIDE.md) - how to prepare screenshots and logs safely.
 
 ## Troubleshooting Guides
 
@@ -33,6 +35,20 @@ Read [SECURITY-SANITIZATION.md](SECURITY-SANITIZATION.md) before adding screensh
 21. [Wireshark TLS Client Hello is missing](21-wireshark-client-hello-missing.md)
 22. [Wireshark capture-filter vs display-filter confusion](22-wireshark-capture-vs-display-filter-confusion.md)
 23. [Wazuh repository caused an unintended package upgrade](23-wazuh-repository-unintended-upgrade.md)
+24. [Persistent external SSD mount by UUID](24-persistent-external-ssd-mount-by-uuid.md)
+
+## Automated Privacy Audit
+
+The repository now includes:
+
+```text
+scripts/audit_public_content.py
+.github/workflows/privacy-audit.yml
+```
+
+The workflow checks public tracked files on pushes and pull requests for common private-key markers, GitHub/AWS token patterns, unexpected literal IPv4 addresses, UUID-like identifiers in documentation, and sensitive key filenames.
+
+Automation is an additional safety layer, not a replacement for human review.
 
 ## Troubleshooting Method Used
 
